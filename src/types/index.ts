@@ -61,3 +61,19 @@ export interface TimeRangeOption {
   label: string;
   days: number;
 }
+
+export interface BlogCardItem {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  category: string;
+  readTime: string;
+  publishDate: string;
+  formattedDate: string;
+  metricsHighlight?: string;
+  author: {
+    name: string;
+    role: string;
+  };
+}

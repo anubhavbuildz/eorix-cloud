@@ -5,10 +5,10 @@ import { CLOUD_PLATFORMS } from '../../data/finopsContent';
 
 export const CloudListSection: React.FC = () => {
   return (
-    <section className="section" id="dashboards" aria-label="Cloud Provider Dashboards">
+    <section className="section" id="dashboard" aria-label="Cloud Provider Dashboard">
       <Container>
         <SectionHeader
-          eyebrow="Dashboards"
+          eyebrow="Dashboard"
           title="A dashboard for each cloud, and one for all of them"
         />
 

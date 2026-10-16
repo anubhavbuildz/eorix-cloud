@@ -106,17 +106,17 @@ export const FINOPS_CYCLE: CycleStepItem[] = [
 
 export const APP_METADATA = {
   brandName: 'Eorix',
-  tagline: 'Multi-cloud FinOps dashboards',
-  heroEyebrow: 'Multi-cloud FinOps dashboards',
+  tagline: 'Multi-cloud FinOps dashboard',
+  heroEyebrow: 'Multi-cloud FinOps dashboard',
   heroTitlePrefix: 'One view of every',
   heroTitleHighlight: 'cloud bill',
   heroLead:
-    'Eorix is building FinOps dashboards for AWS, Microsoft Azure and Google Cloud. See spend by team, catch anomalies the day they start, and track the savings you actually keep.',
+    'Eorix is building a unified FinOps dashboard for AWS, Microsoft Azure and Google Cloud. See spend by team, catch anomalies the day they start, and track the savings you actually keep.',
   metaStatus: 'In development',
   metaLaunch: 'Date to be announced',
   statusBadge: 'Coming soon',
   closingHeading: 'Eorix is coming soon.',
   closingDescription:
-    'The first dashboards are in development. Early access details will appear on this page when they are ready.',
+    'The first dashboard is in development. Early access details will appear on this page when they are ready.',
   copyright: '© 2026 Eorix. All rights reserved.',
 };

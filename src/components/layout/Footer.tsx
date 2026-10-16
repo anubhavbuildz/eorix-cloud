@@ -8,7 +8,7 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({
   copyright = '© 2026 Eorix. All rights reserved.',
-  tagline = 'Multi-cloud FinOps dashboards',
+  tagline = 'Multi-cloud FinOps dashboard',
 }) => {
   return (
     <footer className="foot" role="contentinfo">

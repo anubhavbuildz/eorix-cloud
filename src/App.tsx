@@ -4,6 +4,7 @@ import { HeroSection } from './components/sections/HeroSection';
 import { CloudListSection } from './components/sections/CloudListSection';
 import { FeaturesSection } from './components/sections/FeaturesSection';
 import { FinopsCycleSection } from './components/sections/FinopsCycleSection';
+import { BlogCarouselSection } from './components/sections/BlogCarouselSection';
 import { ClosingBandSection } from './components/sections/ClosingBandSection';
 import './styles/main.css';
 
@@ -17,6 +18,7 @@ export function App() {
         <CloudListSection />
         <FeaturesSection />
         <FinopsCycleSection />
+        <BlogCarouselSection />
         <ClosingBandSection />
       </main>
 
