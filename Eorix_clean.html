@@ -1,0 +1,526 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Eorix</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Michroma&display=swap">
+<style>
+/* Layout: one left-aligned column. Hero pairs the headline with a sample-data dashboard preview; below it, ruled rows instead of cards. Single dark theme taken from the logo. */
+:root {
+  --bg: #080A0F;
+  --surface: #0E131C;
+  --surface-2: #151B28;
+  --line: #1F2635;
+  --fg: #F2F5FA;
+  --muted: #9AA5BB;
+  --blue: #34B1FE;
+  --violet: #643CFD;
+  --violet-text: #9A84FF;
+  --grad: linear-gradient(135deg, #34B1FE 0%, #643CFD 100%);
+  --good: #3DD6A0;
+  --warn: #F5B84B;
+  --crit: #FF6F7D;
+  --good-bg: rgba(61, 214, 160, 0.12);
+  --warn-bg: rgba(245, 184, 75, 0.12);
+  --crit-bg: rgba(255, 111, 125, 0.13);
+  --slate: #5B6B8C;
+  --font-display: "Michroma", "Eurostile", "Arial", sans-serif;
+  --font-body: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+
+.wrap {
+  width: 100%;
+  max-width: 1180px;
+  margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Header */
+.top { padding-block: 24px; }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 14px; }
+.brand-mark { height: 34px; width: auto; }
+.brand-word { height: 17px; width: auto; }
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg);
+}
+.dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--grad);
+  animation: pulse 2.4s ease-out infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(52, 177, 254, 0.55); }
+  70% { box-shadow: 0 0 0 9px rgba(52, 177, 254, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(52, 177, 254, 0); }
+}
+@media (prefers-reduced-motion: reduce) { .dot { animation: none; } }
+
+/* Hero */
+.hero { position: relative; overflow-x: clip; padding-block: clamp(32px, 6vw, 80px) clamp(48px, 7vw, 96px); }
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -10% -10% auto 38%;
+  height: 90%;
+  background:
+    radial-gradient(closest-side at 62% 40%, rgba(100, 60, 253, 0.26), transparent 70%),
+    radial-gradient(closest-side at 30% 55%, rgba(52, 177, 254, 0.16), transparent 72%);
+  pointer-events: none;
+}
+.hero-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(36px, 5vw, 72px);
+  align-items: center;
+}
+h1 {
+  margin: 22px 0 22px;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.7rem, 3.6vw, 2.9rem);
+  line-height: 1.16;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+h1 .grad {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: var(--blue);
+  -webkit-text-fill-color: transparent;
+}
+.lead { margin: 0; max-width: 46ch; font-size: 1.125rem; color: var(--muted); }
+.meta {
+  margin-top: 32px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  max-width: 46ch;
+  display: grid;
+  gap: 6px;
+}
+.meta strong { font-weight: 500; color: var(--fg); }
+.meta-row { display: flex; gap: 14px; flex-wrap: wrap; font-size: 0.9375rem; color: var(--muted); }
+.meta-row span:first-child { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; min-width: 7.5em; padding-top: 3px; }
+
+/* Dashboard preview */
+.preview-label { display: flex; justify-content: flex-end; margin-bottom: 10px; }
+.dash {
+  min-width: 0;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: clamp(14px, 2.4vw, 22px);
+  box-shadow: 0 40px 90px -40px rgba(100, 60, 253, 0.45);
+  display: grid;
+  gap: clamp(14px, 2vw, 20px);
+}
+.dash-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.dash-title { font-weight: 600; font-size: 0.9375rem; }
+.chip-range {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 3px 8px;
+}
+.kpis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.kpi { min-width: 0; padding-top: 12px; border-top: 1px solid var(--line); }
+.kpi-label { font-size: 0.75rem; color: var(--muted); line-height: 1.3; }
+.kpi-value {
+  margin-top: 4px;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: clamp(1rem, 2.2vw, 1.5rem);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+.kpi-sub { margin-top: 2px; font-size: 0.6875rem; color: var(--muted); line-height: 1.3; }
+.kpi-sub.up { color: var(--warn); }
+.kpi-sub.ok { color: var(--good); }
+
+.chart { min-width: 0; }
+.chart svg { display: block; width: 100%; height: auto; }
+.chart text { font-family: var(--font-mono); font-size: 12px; fill: var(--muted); }
+.chart .anom { fill: var(--crit); }
+
+.split-label { display: flex; justify-content: space-between; gap: 8px; font-size: 0.75rem; color: var(--muted); margin-bottom: 8px; }
+.split { display: flex; height: 10px; border-radius: 5px; overflow: hidden; gap: 2px; }
+.split i { display: block; height: 100%; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 10px; font-size: 0.75rem; color: var(--muted); }
+.legend b { font-weight: 500; color: var(--fg); font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend i { width: 8px; height: 8px; border-radius: 2px; display: inline-block; }
+
+.insights { display: grid; }
+.insight {
+  display: grid;
+  grid-template-columns: 82px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 11px 0;
+  border-top: 1px solid var(--line);
+  font-size: 0.8125rem;
+}
+.insight small { display: block; color: var(--muted); font-size: 0.6875rem; }
+.pill {
+  justify-self: start;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+.pill.crit { color: var(--crit); background: var(--crit-bg); }
+.pill.good { color: var(--good); background: var(--good-bg); }
+.pill.warn { color: var(--warn); background: var(--warn-bg); }
+.amt { font-family: var(--font-mono); font-size: 0.8125rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* Sections */
+.section { border-top: 1px solid var(--line); padding-block: clamp(48px, 7vw, 96px); }
+.section-head { display: grid; gap: 14px; margin-bottom: clamp(28px, 4vw, 48px); }
+h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.2rem, 2.4vw, 1.75rem);
+  line-height: 1.25;
+  text-wrap: balance;
+  max-width: 26ch;
+}
+h3 { margin: 0; font-size: 1.0625rem; font-weight: 600; line-height: 1.35; }
+p { margin: 0; }
+
+.cloud-list { display: grid; border-top: 1px solid var(--line); }
+.cloud-row {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr) auto;
+  grid-template-areas: "name desc chip";
+  gap: 8px 32px;
+  align-items: baseline;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--line);
+}
+.cloud-name { grid-area: name; font-size: 1.125rem; font-weight: 600; }
+.cloud-desc { grid-area: desc; color: var(--muted); max-width: 62ch; }
+.cloud-chip {
+  grid-area: chip;
+  justify-self: end;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue);
+  border: 1px solid rgba(52, 177, 254, 0.35);
+  border-radius: 4px;
+  padding: 4px 10px;
+  white-space: nowrap;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: 40px clamp(28px, 4vw, 56px);
+}
+.feature { min-width: 0; border-top: 1px solid var(--line); padding-top: 18px; display: grid; gap: 8px; align-content: start; }
+.feature p { color: var(--muted); }
+
+.cycle { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 4vw, 48px); }
+.cycle li { position: relative; border-top: 2px solid var(--line); padding-top: 20px; display: grid; gap: 8px; align-content: start; }
+.cycle li::before { content: ""; position: absolute; top: -2px; left: 0; width: 56px; height: 2px; background: var(--grad); }
+.cycle .step { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--violet-text); }
+.cycle .name { font-family: var(--font-display); font-size: 1.125rem; }
+.cycle p { color: var(--muted); }
+
+/* Closing band */
+.band { background: var(--surface); border-top: 1px solid var(--line); padding-block: clamp(48px, 7vw, 96px); }
+.band-grid { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: clamp(28px, 6vw, 80px); align-items: center; }
+.band h2 { max-width: 20ch; font-size: clamp(1.4rem, 3vw, 2.2rem); margin-top: 14px; }
+.band p { margin-top: 16px; color: var(--muted); max-width: 52ch; }
+.band-logo { width: clamp(150px, 22vw, 250px); }
+
+.foot { padding-block: 28px; border-top: 1px solid var(--line); }
+.foot .wrap { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; font-size: 0.875rem; color: var(--muted); }
+.foot .brand-mark { height: 24px; }
+.foot .brand { gap: 10px; }
+
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: minmax(0, 1fr); }
+  .preview-label { justify-content: flex-start; }
+}
+@media (max-width: 720px) {
+  .cloud-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "name chip" "desc desc";
+    align-items: center;
+  }
+  .cycle { grid-template-columns: minmax(0, 1fr); }
+  .band-grid { grid-template-columns: minmax(0, 1fr); }
+  .band-logo { order: -1; width: 150px; }
+  .insight { grid-template-columns: 72px minmax(0, 1fr); }
+  .insight .amt { grid-column: 2; }
+  .meta-row span:first-child { min-width: 0; width: 100%; }
+}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <img class="brand-mark" src="DATA_URL_PLACEHOLDER" alt="">
+      <img class="brand-word" src="DATA_URL_PLACEHOLDER" alt="Eorix">
+    </div>
+    <div class="status"><span class="dot" aria-hidden="true"></span>Coming soon</div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <p class="eyebrow">Multi-cloud FinOps dashboards</p>
+          <h1>One view of every <span class="grad">cloud bill</span>.</h1>
+          <p class="lead">Eorix is building FinOps dashboards for AWS, Microsoft Azure and Google Cloud. See spend by team, catch anomalies the day they start, and track the savings you actually keep.</p>
+          <div class="meta">
+            <div class="meta-row"><span>Status</span><span><strong>In development</strong></span></div>
+            <div class="meta-row"><span>Launch</span><span>Date to be announced</span></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="preview-label"><span class="eyebrow">Preview with sample data</span></div>
+          <div class="dash" role="group" aria-label="Preview of the Eorix multi-cloud overview dashboard, using sample data">
+            <div class="dash-head">
+              <span class="dash-title">Multi-cloud overview</span>
+              <span class="chip-range">Last 30 days</span>
+            </div>
+
+            <div class="kpis">
+              <div class="kpi">
+                <div class="kpi-label">30-day spend</div>
+                <div class="kpi-value">$172,200</div>
+                <div class="kpi-sub up">+6.2% vs prior</div>
+              </div>
+              <div class="kpi">
+                <div class="kpi-label">Commitment coverage</div>
+                <div class="kpi-value">71%</div>
+                <div class="kpi-sub">Target 80%</div>
+              </div>
+              <div class="kpi">
+                <div class="kpi-label">Savings found</div>
+                <div class="kpi-value">$18.4k</div>
+                <div class="kpi-sub ok">Per month</div>
+              </div>
+            </div>
+
+            <div class="chart"><svg viewBox="0 0 480 224" role="img" aria-label="Daily cloud spend over 30 days with one anomaly on October 8. Sample data.">
+<defs>
+<linearGradient id="fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#34B1FE" stop-opacity="0.30"/><stop offset="1" stop-color="#643CFD" stop-opacity="0"/></linearGradient>
+<linearGradient id="stroke" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#34B1FE"/><stop offset="1" stop-color="#7A5CFF"/></linearGradient>
+</defs>
+<line x1="40" x2="472" y1="188.0" y2="188.0" stroke="#1F2635" stroke-width="1"/><text x="32" y="192.0" text-anchor="end">$0</text><line x1="40" x2="472" y1="140.6" y2="140.6" stroke="#1F2635" stroke-width="1"/><text x="32" y="144.6" text-anchor="end">$3k</text><line x1="40" x2="472" y1="93.2" y2="93.2" stroke="#1F2635" stroke-width="1"/><text x="32" y="97.2" text-anchor="end">$6k</text><line x1="40" x2="472" y1="45.8" y2="45.8" stroke="#1F2635" stroke-width="1"/><text x="32" y="49.8" text-anchor="end">$9k</text>
+<path d="M40.0,102.0 L54.9,98.5 L69.8,118.5 L84.7,119.3 L99.6,100.4 L114.5,103.6 L129.4,105.1 L144.3,97.2 L159.2,96.0 L174.1,114.5 L189.0,110.4 L203.9,94.1 L218.8,100.8 L233.7,100.1 L248.6,94.3 L263.4,97.1 L278.3,112.2 L293.2,104.5 L308.1,90.0 L323.0,94.9 L337.9,90.9 L352.8,42.5 L367.7,81.9 L382.6,109.1 L397.5,103.0 L412.4,90.1 L427.3,89.7 L442.2,82.7 L457.1,85.1 L472.0,90.2 L472.0,188 L40.0,188 Z" fill="url(#fill)"/>
+<path d="M40.0,102.0 L54.9,98.5 L69.8,118.5 L84.7,119.3 L99.6,100.4 L114.5,103.6 L129.4,105.1 L144.3,97.2 L159.2,96.0 L174.1,114.5 L189.0,110.4 L203.9,94.1 L218.8,100.8 L233.7,100.1 L248.6,94.3 L263.4,97.1 L278.3,112.2 L293.2,104.5 L308.1,90.0 L323.0,94.9 L337.9,90.9 L352.8,42.5 L367.7,81.9 L382.6,109.1 L397.5,103.0 L412.4,90.1 L427.3,89.7 L442.2,82.7 L457.1,85.1 L472.0,90.2" fill="none" stroke="url(#stroke)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="352.8" x2="352.8" y1="50.5" y2="188" stroke="#FF6F7D" stroke-width="1" stroke-dasharray="3 3" opacity="0.7"/>
+<circle cx="352.8" cy="42.5" r="5" fill="#0E131C" stroke="#FF6F7D" stroke-width="2"/>
+<text class="anom" x="352.8" y="31.5" text-anchor="middle">Anomaly</text>
+<circle cx="472.0" cy="90.2" r="7" fill="#643CFD" opacity="0.25"/>
+<circle cx="472.0" cy="90.2" r="3.5" fill="#F2F5FA"/>
+<text x="40.0" y="218" text-anchor="start">Sep 17</text><text x="189.0" y="218" text-anchor="middle">Sep 27</text><text x="337.9" y="218" text-anchor="middle">Oct 7</text><text x="472.0" y="218" text-anchor="end">Oct 16</text>
+</svg></div>
+
+            <div>
+              <div class="split-label"><span>Spend by cloud</span><span>Share of 30-day total</span></div>
+              <div class="split" role="img" aria-label="AWS 58 percent, Azure 27 percent, Google Cloud 15 percent">
+                <i style="width:58%; background:var(--blue)"></i>
+                <i style="width:27%; background:var(--violet)"></i>
+                <i style="width:15%; background:var(--slate)"></i>
+              </div>
+              <div class="legend">
+                <span><i style="background:var(--blue)"></i>AWS <b>58%</b></span>
+                <span><i style="background:var(--violet)"></i>Azure <b>27%</b></span>
+                <span><i style="background:var(--slate)"></i>Google Cloud <b>15%</b></span>
+              </div>
+            </div>
+
+            <div class="insights">
+              <div class="insight">
+                <span class="pill crit">Anomaly</span>
+                <span>Data transfer spike in us-east-1<small>AWS · Oct 8</small></span>
+                <span class="amt">+$3.1k</span>
+              </div>
+              <div class="insight">
+                <span class="pill good">Savings</span>
+                <span>14 idle VMs in prod-eastus<small>Azure · unattached for 21 days</small></span>
+                <span class="amt">$4.2k/mo</span>
+              </div>
+              <div class="insight">
+                <span class="pill warn">Coverage</span>
+                <span>Compute Engine committed use at 54%<small>Google Cloud · 3 projects</small></span>
+                <span class="amt">$1.8k/mo</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Dashboards</span>
+        <h2>A dashboard for each cloud, and one for all of them</h2>
+      </div>
+      <div class="cloud-list">
+        <div class="cloud-row">
+          <div class="cloud-name">Amazon Web Services</div>
+          <p class="cloud-desc">Cost and Usage Report views by service, account and tag, with Savings Plans and Reserved Instance coverage and utilization.</p>
+          <span class="cloud-chip">Coming soon</span>
+        </div>
+        <div class="cloud-row">
+          <div class="cloud-name">Microsoft Azure</div>
+          <p class="cloud-desc">Cost Management exports by subscription and resource group, with reservation and Azure Hybrid Benefit tracking.</p>
+          <span class="cloud-chip">Coming soon</span>
+        </div>
+        <div class="cloud-row">
+          <div class="cloud-name">Google Cloud</div>
+          <p class="cloud-desc">Billing export views in BigQuery by project and label, with committed use discount coverage.</p>
+          <span class="cloud-chip">Coming soon</span>
+        </div>
+        <div class="cloud-row">
+          <div class="cloud-name">All clouds together</div>
+          <p class="cloud-desc">Costs from every provider normalized into one model, so a team's total spend sits in one place and one currency.</p>
+          <span class="cloud-chip">Coming soon</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">What Eorix will cover</span>
+        <h2>The questions finance and engineering ask every month</h2>
+      </div>
+      <div class="features">
+        <div class="feature">
+          <h3>Allocate spend</h3>
+          <p>Break costs down by team, product and environment using tags and labels, then share showback reports.</p>
+        </div>
+        <div class="feature">
+          <h3>Catch anomalies</h3>
+          <p>Get an alert when daily spend leaves its normal range, with the service and account behind it.</p>
+        </div>
+        <div class="feature">
+          <h3>Track commitments</h3>
+          <p>See coverage and utilization for Savings Plans, reservations and committed use in a single table.</p>
+        </div>
+        <div class="feature">
+          <h3>Forecast and budget</h3>
+          <p>Project month-end spend for each cloud and set budgets that warn you before you cross them.</p>
+        </div>
+        <div class="feature">
+          <h3>Find waste</h3>
+          <p>List idle, oversized and unattached resources with the monthly cost of leaving them running.</p>
+        </div>
+        <div class="feature">
+          <h3>Report to finance</h3>
+          <p>Export month-end numbers by cost center in the layout your finance team already uses.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">How it works</span>
+        <h2>Built around the FinOps cycle</h2>
+      </div>
+      <ol class="cycle">
+        <li>
+          <span class="step">Step 1</span>
+          <span class="name">Inform</span>
+          <p>See where the money goes and which team owns each line.</p>
+        </li>
+        <li>
+          <span class="step">Step 2</span>
+          <span class="name">Optimize</span>
+          <p>Act on commitments, rightsizing and idle resources.</p>
+        </li>
+        <li>
+          <span class="step">Step 3</span>
+          <span class="name">Operate</span>
+          <p>Keep budgets, alerts and monthly reviews running without a spreadsheet.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <div class="band-grid">
+        <div>
+          <span class="eyebrow">Status</span>
+          <h2>Eorix is coming soon.</h2>
+          <p>The first dashboards are in development. Early access details will appear on this page when they are ready.</p>
+        </div>
+        <img class="band-logo" src="DATA_URL_PLACEHOLDER" alt="Eorix logo">
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="brand">
+      <img class="brand-mark" src="DATA_URL_PLACEHOLDER" alt="">
+      <span>© 2026 Eorix. All rights reserved.</span>
+    </div>
+    <span>Multi-cloud FinOps dashboards</span>
+  </div>
+</footer>
+
+</body></html>

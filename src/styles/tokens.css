@@ -1,0 +1,40 @@
+:root {
+  --bg: #080A0F;
+  --surface: #0E131C;
+  --surface-2: #151B28;
+  --surface-3: #1A2234;
+  --surface-card: rgba(14, 19, 28, 0.85);
+  --line: #1F2635;
+  --line-light: #2A3449;
+  --fg: #F2F5FA;
+  --muted: #9AA5BB;
+  --muted-dim: #6B778D;
+  --blue: #34B1FE;
+  --blue-hover: #58C0FE;
+  --violet: #643CFD;
+  --violet-text: #9A84FF;
+  --grad: linear-gradient(135deg, #34B1FE 0%, #643CFD 100%);
+  --grad-hover: linear-gradient(135deg, #44BBFE 0%, #754DFD 100%);
+  --good: #3DD6A0;
+  --warn: #F5B84B;
+  --crit: #FF6F7D;
+  --good-bg: rgba(61, 214, 160, 0.12);
+  --warn-bg: rgba(245, 184, 75, 0.12);
+  --crit-bg: rgba(255, 111, 125, 0.13);
+  --slate: #5B6B8C;
+
+  --font-display: "Michroma", "Eurostile", "Arial", sans-serif;
+  --font-body: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+  --radius-pill: 9999px;
+
+  --shadow-dash: 0 40px 90px -40px rgba(100, 60, 253, 0.45);
+  --shadow-hover: 0 12px 32px -10px rgba(52, 177, 254, 0.25);
+  --transition-fast: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  color-scheme: dark;
+}
