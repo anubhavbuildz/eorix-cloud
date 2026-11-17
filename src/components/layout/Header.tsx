@@ -30,9 +30,9 @@ export const Header: React.FC = () => {
           </div>
 
           <a
-            href="mailto:infrabyanubhav@gamil.com"
+            href="mailto:infrabyanubhav@gmail.com"
             className="btn-header-cta"
-            aria-label="Contact infrabyanubhav@gamil.com"
+            aria-label="Contact infrabyanubhav@gmail.com"
             style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px' }}
           >
             <Mail size={13} />

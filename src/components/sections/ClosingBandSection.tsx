@@ -3,7 +3,7 @@ import { Container } from '../common/Container';
 import { APP_METADATA } from '../../data/finopsContent';
 import { Mail, Copy, Check, ArrowUpRight } from 'lucide-react';
 
-const CONTACT_EMAIL = 'infrabyanubhav@gamil.com';
+const CONTACT_EMAIL = 'infrabyanubhav@gmail.com';
 
 export const ClosingBandSection: React.FC = () => {
   const [copied, setCopied] = useState(false);

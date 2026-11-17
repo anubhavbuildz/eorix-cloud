@@ -151,7 +151,7 @@ export const BlogCarouselSection: React.FC = () => {
                     </time>
 
                     <a
-                      href="mailto:infrabyanubhav@gamil.com?subject=Inquiry regarding FinOps Playbook"
+                      href="mailto:infrabyanubhav@gmail.com?subject=Inquiry regarding FinOps Playbook"
                       className="blog-read-link"
                       aria-label={`Read guide: ${blog.title}`}
                     >
